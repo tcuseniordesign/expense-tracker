@@ -4,6 +4,7 @@ import edu.tcu.cs.expensetracker.domain.Activity;
 import edu.tcu.cs.expensetracker.domain.Result;
 import edu.tcu.cs.expensetracker.domain.StatusCode;
 import edu.tcu.cs.expensetracker.service.ActivityService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,10 +24,17 @@ public class ActivityController {
         Result result = new Result(true, StatusCode.SUCCESS, "Find All Success!", all);
         return result;
     }
+
     @GetMapping("/activities/{activityId}")
     public Result findById(@PathVariable String activityId){
         return new Result(true, StatusCode.SUCCESS, "Find One Success!", activityService.findById(activityId));
     }
+
+    @GetMapping("/activities/{activityDateMin}/{activityDateMax}")
+    public Result findByDateRange(@PathVariable String activityDateMin, @PathVariable String activityDateMax){
+        return new Result(true, StatusCode.SUCCESS,"Find by Date Range Success!", activityService.findByDateRange(activityDateMin, activityDateMax));
+    }
+
     @PostMapping("/activities")
     public Result save(@RequestBody Activity newActivity){
         activityService.save(newActivity);

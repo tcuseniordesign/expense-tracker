@@ -27,6 +27,10 @@ public class ActivityService {
         return activityDao.findById(activityId).get();
     }
 
+    public List<Activity> findByDateRange(String activityDateMin, String activityDateMax){
+        return activityDao.findAll();
+    }
+
     public void save(Activity newActivity){
         newActivity.setId(idWorker.nextId() + "");
         activityDao.save(newActivity);
