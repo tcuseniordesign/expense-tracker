@@ -36,4 +36,8 @@ public class ActivityService {
         updatedActivity.setId(activityId);
         activityDao.save(updatedActivity);
     }
+
+    public void delete(String activityId){
+        activityDao.deleteById(activityId);
+    }
 }

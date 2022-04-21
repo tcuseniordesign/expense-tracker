@@ -38,4 +38,10 @@ public class ActivityController {
         activityService.update(activityId, updatedActivity);
         return new Result(true, StatusCode.SUCCESS, "Update Success!");
     }
+
+    @DeleteMapping("/activities/{activityId}")
+    public Result delete(@PathVariable String activityId){
+        activityService.delete(activityId);
+        return new Result(true, StatusCode.SUCCESS, "Delete Success!");
+    }
 }
