@@ -31,4 +31,9 @@ public class ActivityService {
         newActivity.setId(idWorker.nextId() + "");
         activityDao.save(newActivity);
     }
+
+    public void update(String activityId, Activity updatedActivity){
+        updatedActivity.setId(activityId);
+        activityDao.save(updatedActivity);
+    }
 }

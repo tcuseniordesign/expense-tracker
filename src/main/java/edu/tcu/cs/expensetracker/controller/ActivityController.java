@@ -32,4 +32,10 @@ public class ActivityController {
         activityService.save(newActivity);
         return new Result(true, StatusCode.SUCCESS, "Save Success!");
     }
+
+    @PutMapping("/activities/{activityId}")
+    public Result update(@PathVariable String activityId, @RequestBody Activity updatedActivity){
+        activityService.update(activityId, updatedActivity);
+        return new Result(true, StatusCode.SUCCESS, "Update Success!");
+    }
 }
