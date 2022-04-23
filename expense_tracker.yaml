@@ -1,0 +1,283 @@
+swagger: "2.0"
+info:
+  description: "Expense Tracker Online provides REST APIs to CRUD activities."
+  version: "1.0.0"
+  title: "Exprense tracker"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "m.t.cockerell@tcu.edu"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/"
+tags:
+  - name: "activitys"
+    description: "Everything about Hogwarts activitys"
+schemes:
+  - "http"
+paths:
+  /activitys:
+    get:
+      tags:
+        - "activitys"
+      summary: "Find all activitys from the collection"
+      responses:
+        200:
+          description: "Find All Success"
+          schema:
+            $ref: '#/definitions/ApiFindAllActivitysResponse'
+    post:
+      tags:
+        - "activitys"
+      summary: "Add a new activity to the collection"
+      description: ""
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Activity object that needs to be added"
+          required: true
+          schema:
+            example:
+              name: "John"
+              description: "Deposit"
+              account: "checking"
+              createtime: "10/21/22"
+              money: 50
+
+      responses:
+        200:
+          description: Save Success
+          schema:
+            $ref: '#/definitions/ApiSaveResponse'
+
+  /activitys/{activityId}:
+    put:
+      tags:
+        - "activitys"
+      summary: "Update an existing activity"
+      parameters:
+        - name: "activityId"
+          in: path
+          description: Activity ID
+          required: true
+          type: string
+        - name: "body"
+          in: body
+          description: "Activity object that needs to be updated"
+          required: true
+          schema:
+            example:
+              name: "John"
+              description: "Deposit"
+              account: "checking"
+              createtime: "10/21/22"
+              money: 50
+      responses:
+        200:
+          description: Update Success
+          schema:
+            $ref: '#/definitions/ApiUpdateResponse'
+    get:
+      tags:
+        - "activitys"
+      summary: "Find an activity by id"
+      description: ""
+      parameters:
+        - name: "activityId"
+          in: path
+          description: Activity ID
+          required: true
+          type: string
+      responses:
+        200:
+          description: Find One Success
+          schema:
+            $ref: '#/definitions/ApiFindOneActivityResponse'
+
+    delete:
+      tags:
+        - "activitys"
+      summary: "Delete an activity"
+      description: ""
+      parameters:
+        - name: "activityId"
+          in: "path"
+          description: "Activity id to delete"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: Delete Success
+          schema:
+            $ref: '#/definitions/ApiDeleteResponse'
+
+  /activitys/{createtime}:
+    get:
+      tags:
+        - "activitys"
+      summary: "Find an activity by create time"
+      description: ""
+      parameters:
+        - name: "createtime"
+          in: path
+          description: Create Time
+          required: true
+          type: string
+      responses:
+        200:
+          description: Find One Success
+          schema:
+            $ref: '#/definitions/ApiFindOneActivityResponse'
+
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Activity:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "1250808601736515584"
+      name:
+        type: "string"
+        example: "John"
+      description:
+        type: "string"
+        example: "Deposit"
+      account:
+        type: "string"
+        example: "checking"
+      createtime:
+        type: "string"
+        example: "10/21/22"
+      money:
+        type: "number"
+        example: 50
+
+  ActivityList:
+    type: array
+    items:
+      $ref: '#/definitions/Activity'
+    example:
+      - id: "1250808601736515584"
+        name: "John"
+        description: "Deposit"
+        account: "checking"
+        createtime: "10/21/22"
+        money: 10
+      - id: "1250808601736515585"
+        name: "Jack"
+        description: "Deposit"
+        account: "savings"
+        createtime: "10/21/22"
+        money: 30
+
+  ApiSaveResponse:
+    type: object
+    properties:
+      flag:
+        type: boolean
+        description: Success or not
+      code:
+        type: integer
+        description: Return code
+        example: 200
+      message:
+        type: string
+        example: "Save Success"
+  ApiUpdateResponse:
+    type: object
+    properties:
+      flag:
+        type: boolean
+        description: Success or not
+      code:
+        type: integer
+        description: Return code
+        example: 200
+      message:
+        type: string
+        example: "Update Success"
+  ApiDeleteResponse:
+    type: object
+    properties:
+      flag:
+        type: boolean
+        description: Success or not
+      code:
+        type: integer
+        description: Return code
+        example: 200
+      message:
+        type: string
+        example: "Delete Success"
+  ApiLoginResponse:
+    type: object
+    properties:
+      flag:
+        type: boolean
+        description: Success or not
+      code:
+        type: integer
+        description: Return code
+        example: 200
+      message:
+        type: string
+        example: "Login Success"
+  ApiAssignmentResponse:
+    type: object
+    properties:
+      flag:
+        type: boolean
+        description: Success or not
+      code:
+        type: integer
+        description: Return code
+        example: 200
+      message:
+        type: string
+        example: "Activity Assignment Success"
+  ApiFindAllActivitysResponse:
+    type: "object"
+    properties:
+      flag:
+        type: "boolean"
+        description: Success or not
+      code:
+        type: "integer"
+        example: 200
+      message:
+        type: "string"
+        example: "Find All Success"
+      data:
+        $ref: '#/definitions/ActivityList'
+
+  ApiFindOneActivityResponse:
+    type: "object"
+    properties:
+      flag:
+        type: "boolean"
+        description: Success or not
+      code:
+        type: "integer"
+        example: 200
+      message:
+        type: "string"
+        example: "Find One Success"
+      data:
+        example:
+          id: "1250808601744904193"
+          name: "Invisibility Cloak"
+          description: "An invisibility cloak is used to make the wearer invisible."
+          imageUrl: "imageUrl"

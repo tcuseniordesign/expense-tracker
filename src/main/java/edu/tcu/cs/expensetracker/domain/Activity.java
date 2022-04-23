@@ -1,14 +1,12 @@
 package edu.tcu.cs.expensetracker.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
-
-/**
- * Class Activity is called JavaBean, it corresponds to the table Activity in
- * Database. Each attribute in JavaBean corresponds to each field or column in
- * the table. There should also be setter and getter methods.
- */
+@Entity
 public class Activity implements Serializable {
-    private int id;
+    @Id
+    private String id;
 
     private String name;
 
@@ -20,27 +18,12 @@ public class Activity implements Serializable {
 
     private String description;
 
-    public Activity(int id, String flname, double money, String account, String createtime, String description) {
-        this.id = id;
-        this.name = flname;
-        this.money = money;
-        this.account = account;
-        this.createtime = createtime;
-        this.description = description;
-    }
 
     public Activity() {
-
     }
 
-    @Override
-    public String toString() {
-        return "Activity [id=" + id + ", name=" + name + ", money=" + money + ", account=" + account + ", createtime="
-                + createtime + ", description=" + description + "]";
-    }
 
-    // getters and setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -79,6 +62,7 @@ public class Activity implements Serializable {
     public void setCreatetime(String createtime) {
         this.createtime = createtime;
     }
+
 
     public String getDescription() {
         return description;

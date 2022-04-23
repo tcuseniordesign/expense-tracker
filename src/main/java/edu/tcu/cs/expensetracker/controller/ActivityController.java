@@ -1,47 +1,52 @@
 package edu.tcu.cs.expensetracker.controller;
 
 import edu.tcu.cs.expensetracker.domain.Activity;
+import edu.tcu.cs.expensetracker.domain.Result;
+import edu.tcu.cs.expensetracker.domain.StatusCode;
 import edu.tcu.cs.expensetracker.service.ActivityService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/activitys")
 public class ActivityController {
-    private ActivityService service = new ActivityService();
 
-    /*
-     * Controller passes the id of activity to ActivityService
-     */
-    public void deleteActivity(int id) {
-        service.deleteActivity(id);
+    private ActivityService activityService;
+
+    public ActivityController(ActivityService activityService) {
+        this.activityService = activityService;
     }
 
-    /*
-     * Controller is calling ActivityService's editActivity method and passing act to it.
-     */
-    public void editActivity(String activityId, Activity act) {
-        service.update(activityId, act);
+    @GetMapping
+    public Result findAll() {
+        List<Activity> all = activityService.findAll();
+        Result result = new Result(true, StatusCode.SUCCESS, "Find All Success", all);
+        return result;
     }
 
-    /*
-     * Controller is invoking the addActivity method of ActivityService
-     *
-     */
-    public void addActivity(Activity act) {
-        service.addActivity(act);
+    @GetMapping("/{activityId}")
+    public Result findById(@PathVariable String activityId) {
+        return new Result(true, StatusCode.SUCCESS, "Find One Success", activityService.findById(activityId));
     }
 
-    /*
-     * Controller passes start and end date to ActivityService
-     * and returns the result to MainView
-     */
-    public List<Activity> select(String startDate, String endDate) {
-        return service.select(startDate, endDate);
+    @PostMapping
+    public Result save(@RequestBody Activity newActivity) {
+        activityService.save(newActivity);
+        return new Result(true, StatusCode.SUCCESS, "Save Success");
     }
 
-    /*
-     * Controller is calling ActivityService's selectAll method.
-     */
-    public List<Activity> selectAll() {
-        return service.selectAll();
+    @PutMapping("/{activityId}")
+    public Result update(@PathVariable String activityId, @RequestBody Activity updatedActivity) {
+        activityService.update(activityId, updatedActivity);
+        return new Result(true, StatusCode.SUCCESS, "Update Success");
     }
+
+    @DeleteMapping("/{activityId}")
+    public Result delete(@PathVariable String activityId) {
+        activityService.delete(activityId);
+        return new Result(true, StatusCode.SUCCESS, "Delete Success");
+    }
+
+
 }
