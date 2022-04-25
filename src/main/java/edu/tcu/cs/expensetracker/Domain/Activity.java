@@ -20,7 +20,7 @@ public class Activity {
 
     private String account;
 
-    private LocalDate createtime;
+    private String createtime;
 
     private String description;
 
@@ -60,11 +60,11 @@ public class Activity {
         this.account = account;
     }
 
-    public LocalDate getCreatetime() {
+    public String getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(LocalDate createtime) {
+    public void setCreatetime(String createtime) {
         this.createtime = createtime;
     }
 

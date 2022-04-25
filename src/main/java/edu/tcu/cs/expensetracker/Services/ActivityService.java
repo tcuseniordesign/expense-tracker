@@ -33,7 +33,7 @@ public class ActivityService {
         List<Activity> entries = activityDao.findAll();
         List<Activity> finalEntries = new ArrayList<>();
         for(int i=0; i < entries.size(); i++){
-            if (list.contains(entries.get(i).getCreatetime())){
+            if (list.contains(LocalDate.parse(entries.get(i).getCreatetime()))){
                 finalEntries.add(entries.get(i));
             }
         }
