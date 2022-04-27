@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -67,13 +68,12 @@ public class ActivityService {
             Date check = formatter.parse(t.time);
             Boolean bool1 = check.after(Start);
             Boolean bool2 = check.before(End);
-            
+
             if(bool1 && bool2){
                 ans.add(t);
             }
         }
-        System.out.println(sdate);
-        System.out.println(edate);
-        return  ans;
+
+        return ans;
     }
 }
