@@ -49,7 +49,8 @@ public class ActivityController {
     @PutMapping("/{activityId}")
     public Result update(@PathVariable int activityId, @RequestBody Activity updatedActivity) {
         activityService.update(activityId, updatedActivity);
-        return new Result(true, StatusCode.SUCCESS, "Updated Success");
+        Activity a = activityService.searchById(activityId);
+        return new Result(true, StatusCode.SUCCESS, "Updated Success", a);
     }
 
     @DeleteMapping("/{activityId}")
