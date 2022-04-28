@@ -54,8 +54,9 @@ public class ActivityController {
 
     @DeleteMapping("/{activityId}")
     public Result delete(@PathVariable int activityId) {
+        Activity a = activityService.searchById(activityId);
         activityService.delete(activityId);
-        return new Result(true, StatusCode.SUCCESS, "Delete Success");
+        return new Result(true, StatusCode.SUCCESS, "Delete Success", a);
     }
 
 }

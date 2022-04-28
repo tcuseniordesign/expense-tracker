@@ -24,7 +24,26 @@ public class DBDatainitializer implements CommandLineRunner {
         a1.setDate("2016-03-02");
         a1.setDescription("Dutch Burger");
 
+        Activity a2 = new Activity();
+        Activity a3 = new Activity();
+
+        a2.setId(2);
+        a2.setName("Salary Income");
+        a2.setMoney(3000.0);
+        a2.setAccount("Cash");
+        a2.setDate("2016-03-15");
+        a2.setDescription("September Salary");
+
+        a3.setId(3);
+        a3.setName("Books Spending");
+        a3.setMoney(200.0);
+        a3.setAccount("Cash");
+        a3.setDate("2016-04-02");
+        a3.setDescription("Calculus Book");
+
         activityDao.save(a1);
+        activityDao.save(a2);
+        activityDao.save(a3);
 
     }
 }
