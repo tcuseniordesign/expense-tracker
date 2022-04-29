@@ -12,7 +12,6 @@ public class Expense implements Serializable {
     private String id;
     private String name;
     private String description;
-    private String imageUrl;
     private String money;
     private String account;
     private String createTime;
@@ -21,14 +20,6 @@ public class Expense implements Serializable {
     private Expense owner;
 
     public Expense() {
-    }
-
-    public Expense getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Expense owner) {
-        this.owner = owner;
     }
 
     public String getId() {

@@ -4,8 +4,10 @@ import edu.tcu.cs.expensetracker.domain.Expense;
 import edu.tcu.cs.expensetracker.domain.Result;
 import edu.tcu.cs.expensetracker.domain.StatusCode;
 import edu.tcu.cs.expensetracker.service.ExpenseService;
+
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -27,6 +29,13 @@ public class ExpenseController {
     @GetMapping("/{expenseId}")
     public Result findById(@PathVariable String expenseId) {
         return new Result(true, StatusCode.SUCCESS, "Find One Success", expenseService.findById(expenseId));
+    }
+
+    @GetMapping("/{expenseStart}/{expenseEnd}")
+    public Result findById(@PathVariable String expenseStart, @PathVariable String expenseEnd) {
+        LocalDate expenseStartDate = LocalDate.parse(expenseStart);
+        LocalDate expenseEndDate = LocalDate.parse(expenseEnd);
+        return new Result(true, StatusCode.SUCCESS, "Find Between Dates Success", expenseService.findBetweenDates(expenseStartDate, expenseEndDate));
     }
 
     @PostMapping
