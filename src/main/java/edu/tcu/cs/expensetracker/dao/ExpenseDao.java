@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Date;
 
 public interface ExpenseDao extends JpaRepository<Expense, Integer> {
-    Expense findByDate(Date startdate, Date enddate);
+
 }
