@@ -1,4 +1,4 @@
-package edu.tcu.cs.hogwarts.domain;
+package edu.tcu.cs.expensetracker.domain;
 
 /*
 used to encapsulate data prepared by server side, this object will be serialized to JSON before
