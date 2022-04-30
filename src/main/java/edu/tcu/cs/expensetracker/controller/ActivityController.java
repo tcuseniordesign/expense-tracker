@@ -29,8 +29,8 @@ public class ActivityController {
         return new Result(true, StatusCode.SUCCESS, "Find All Success", service.findById(id));
     }
 
-    @GetMapping("/inRange")
-    public Result findByDate(@RequestParam String startDate, @RequestParam String endDate){
+    @GetMapping("/{startDate}/{endDate}")
+    public Result findByDate(@PathVariable String startDate, @PathVariable String endDate){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return new Result(true, StatusCode.SUCCESS, "Find by Date Success", service.findByDate(LocalDate.parse(startDate, formatter), LocalDate.parse(endDate, formatter)));
     }
