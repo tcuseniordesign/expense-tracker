@@ -20,7 +20,7 @@ public class DBDataInitializer implements CommandLineRunner {
         a1.setName("firat");
         a1.setMoney("234243242");
         a1.setAccount("checking");
-        a1.setCreatetime("1/1/2022");
+        a1.setCreatetime("2022-1-1");
         a1.setDescription("activityexpense");
 
         Activity a2 = new Activity();
@@ -28,7 +28,7 @@ public class DBDataInitializer implements CommandLineRunner {
         a2.setName("bingyang");
         a2.setMoney("0");
         a2.setAccount("saving");
-        a2.setCreatetime("1/1/2022");
+        a2.setCreatetime("2022-1-1");
         a2.setDescription("expensive item");
 
         Activity a3 = new Activity();
@@ -36,7 +36,7 @@ public class DBDataInitializer implements CommandLineRunner {
         a3.setName("wei");
         a3.setMoney("10353");
         a3.setAccount("checking");
-        a3.setCreatetime("1/1/2022");
+        a3.setCreatetime("2022-1-1");
         a3.setDescription("aaa description of an iteam");
 
         Activity a4 = new Activity();
@@ -44,7 +44,7 @@ public class DBDataInitializer implements CommandLineRunner {
         a4.setName("aaaa");
         a4.setMoney("234234");
         a4.setAccount("savings");
-        a4.setCreatetime("1/1/2022");
+        a4.setCreatetime("2022-1-1");
         a4.setDescription("travel expenses");
 
         Activity a5 = new Activity();
@@ -52,7 +52,7 @@ public class DBDataInitializer implements CommandLineRunner {
         a5.setName("test");
         a5.setMoney("2346324658");
         a5.setAccount("college fund");
-        a5.setCreatetime("1/1/2022");
+        a5.setCreatetime("2022-1-1");
         a5.setDescription("food expensies");
 
         activityDao.save(a1);

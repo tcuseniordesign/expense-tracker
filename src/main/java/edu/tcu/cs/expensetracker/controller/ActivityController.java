@@ -27,13 +27,13 @@ public class ActivityController {
         return new Result(true, 200, "success findbyid", activityService.findById(id));
     }
     @PostMapping("/activity")
-    public Result save(@RequestBody Activity newUserActivity){
-        activityService.save(newUserActivity);
+    public Result save(@RequestBody Activity newActivity){
+        activityService.save(newActivity);
         return new Result(true, 200, "success save");
     }
     @PutMapping("/activity/{id}")
-    public Result update(@PathVariable String id, @RequestBody Activity updatedUserActivity){
-        activityService.update(id, updatedUserActivity);
+    public Result update(@PathVariable String id, @RequestBody Activity updatedActivity){
+        activityService.update(id, updatedActivity);
         return new Result(true, 200, "success save");
     }
     @DeleteMapping("/activity/{id}")
