@@ -8,21 +8,18 @@ import javax.persistence.Id;
 @Entity
 public class Expense implements Serializable {
     @Id
-    private Integer id;
+    private String id;
     private String name;
-    private Double money;
-    private Long account;
-    private Date createtime;
+    private Integer money;
+    private String account;
+    private String createtime;
     private String desc;
 
-    public Expense() {
-    }
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -34,27 +31,27 @@ public class Expense implements Serializable {
         this.name = name;
     }
 
-    public Double getMoney() {
+    public Integer getMoney() {
         return money;
     }
 
-    public void setMoney(Double money) {
+    public void setMoney(Integer money) {
         this.money = money;
     }
 
-    public Long getAccount() {
+    public String getAccount() {
         return account;
     }
 
-    public void setAccount(Long account) {
+    public void setAccount(String account) {
         this.account = account;
     }
 
-    public Date getCreatetime() {
+    public String getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(String createtime) {
         this.createtime = createtime;
     }
 

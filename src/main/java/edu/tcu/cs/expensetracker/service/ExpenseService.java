@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,20 +22,24 @@ public class ExpenseService {
         return expenseDao.findAll();
     }
 
-    public List<Expense> findExpense(Date startDate, Date endDate){
-        return expenseDao.findAll();
+    public List<Expense> getAllExpensesBetweenDates(String startDate, String endDate){
+        return expenseDao.getAllExpensesBetweenDates(startDate, endDate);// findByStartDateBetween(startDate, endDate);
+    }
+
+    public Expense findById(String id){
+        return expenseDao.findById(id).get();
     }
 
     public void save(Expense expense){
         expenseDao.save(expense);
     }
 
-    public void update(Integer id, Expense expense){
+    public void update(String id, Expense expense){
         expense.setId(id);
         expenseDao.save(expense);
     }
 
-    public void deleteById(Integer id){
+    public void deleteById(String id){
         expenseDao.deleteById(id);
     }
 }

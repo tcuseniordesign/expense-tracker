@@ -23,9 +23,14 @@ public class ExpenseController {
         return new Result(true, StatusCode.SUCCESS, "Find All Success", service.findAll());
     }
 
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable String id){
+        return new Result(true, StatusCode.SUCCESS, "Found a valid ID Expense.", service.findById(id));
+    }
+
     @GetMapping("/{startDate}/{endDate}")
-    public Result findExpense(@PathVariable Date startDate, @PathVariable Date endDate){
-        return new Result(true, StatusCode.SUCCESS, "Find Given Start and End Date Success", service.findExpense(startDate, endDate));
+    public Result findExpense(@PathVariable String startDate, @PathVariable String endDate){
+        return new Result(true, StatusCode.SUCCESS, "Find Given Start and End Date Success", service.getAllExpensesBetweenDates(startDate, endDate));// service.findByStartDateBetween(startDate, endDate));
     }
 
     @PostMapping
@@ -35,13 +40,13 @@ public class ExpenseController {
     }
 
     @PutMapping("/{id}")
-    public Result update(@RequestBody Expense expense, @PathVariable Integer id){
+    public Result update(@RequestBody Expense expense, @PathVariable String id){
         service.update(id, expense);
         return new Result(true, StatusCode.SUCCESS, "Update Success");
     }
 
     @DeleteMapping("/{id}")
-    public Result delete(@PathVariable Integer id){
+    public Result delete(@PathVariable String id){
         service.deleteById(id);
         return new Result(true, StatusCode.SUCCESS, "Delete Success");
     }
